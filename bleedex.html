@@ -1,0 +1,121 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="res/bx.css">
+		
+		<title>Bleedex - Bleed calculator</title>
+	</head>
+	
+	<body>
+	<!-- 
+		<form>
+			<span>Type of project</span>
+			<br>
+			<input type="radio" id="single" name="page" value="single">
+			<label for="single">Single page</label>
+			<br>
+			<input type="radio" id="double" name="page" value="double">
+			<label for="double">Double page/Cover</label>
+			<br>
+			<span>Size</span>
+			<br>
+			<input type="radio" id="a4" name="size" value="a4">
+			<label for="a4">A4</label>
+			<br>
+			<input type="radio" id="a5" name="size" value="a5">
+			<label for="a5">A5</label>
+			<br>
+			<input type="radio" id="letter" name="size" value="letter">
+			<label for="letter">Letter</label>
+			<br>
+			<input type="radio" id="digest" name="size" value="digest">
+			<label for="digest">Digest (half letter)</label>
+			<br>
+			<input type="radio" id="custom" name="size" value="custom">
+			<label for="custom">Custom</label>
+			<br>
+			<label for="bleed">Bleed</label>
+			<input id="bleed" name="bleed" type="text">
+			<label for="spine">Spine</label>
+			<input id="spine" name="spine" type="text">
+			<br>
+			<input type="submit" id="button">
+		
+
+		</form>
+		-->
+		<script>
+		
+		
+			console.log("Usage: type: single/double, size: a5, a4, letter, digest, width, height, bleed, spine")
+
+			function n(type, size, width, height, bleed, spine)
+			{
+			
+				function dunk(checkNum, min, max){
+					
+					if(checkNum < min || checkNum > max || !Number.isInteger(checkNum) ){
+					return('invalid')
+					}
+				}
+				
+			dunk('m', 10, 20)
+			
+			 switch(size)
+			 {
+				case 'a4':
+				 width = 210
+				 heihth = 297
+				 break;
+				 
+				case 'a5':
+				 width = 148
+				 height = 210
+				break;
+				
+				case 'letter':
+				 width = 8.5
+				 height = 11
+				 break;
+				 
+				case 'digest':
+				width = 5.5
+				height = 8.5
+				break;
+				
+				default:
+				
+				dunk(width, 0, 100000)
+				dunk(height, 0, 100000)
+				console.log(dunk)
+				
+
+				break;
+			 }
+			 
+			
+			
+			 switch(type)
+				{
+				 case 'double':
+					
+					width = width*2+bleed*2+spine
+					height = height+2*bleed
+				
+					break;
+					
+				 case 'single':
+					width = width+2*bleed
+					height = height+2*bleed
+					break
+				}
+				
+			}
+
+</script>
+		
+		
+		
+	</body>
+
+</html>
