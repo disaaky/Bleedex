@@ -3,10 +3,10 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="res/bx.css">	
 		<title>Bleedex - Bleed calculator</title>
-	</head>
+</head>
 	
-	<body>
-	
+<body>
+<!--
 		<form>
 			<span>Type of project ui</span>
 			<br>
@@ -42,74 +42,95 @@
 		
 
 		</form>
-	
-		<script>
+	-->
+<script>
 		
 		
-			console.log("Usage: type: single/double, size: a5, a4, letter, digest, width, height, bleed, spine")
+	console.log("Usage: type: single/double, size: a5, a4, letter, digest,  bleed, spine, width, height")
+	console.log('n(single, a5, 0.5, 0)')
 
-			function n(type, size, width, height, bleed, spine)
+	function n(type, size, bleed, spine, width, height)
+	{	
+		//ask project size
+		switch(size)
 			{
-			
-				function dunk(checkNum, min, max){
-					
-					if(checkNum < min || checkNum > max || !Number.isInteger(checkNum) ){
-					return('invalid')
-					}
-				}
-				
-			dunk('m', 10, 20)
-			
-			 switch(size)
-			 {
 				case 'a4':
-				 width = 210
-				 heihth = 297
-				 break;
+					width = 210
+					height = 297
+					break;
 				 
 				case 'a5':
-				 width = 148
-				 height = 210
-				break;
+					width = 148
+					height = 210
+					break;
 				
 				case 'letter':
-				 width = 8.5
-				 height = 11
-				 break;
+					width = 8.5
+					height = 11
+					break;
 				 
 				case 'digest':
-				width = 5.5
-				height = 8.5
-				break;
-				
-				default:
-				
-				dunk(width, 0, 100000)
-				dunk(height, 0, 100000)
-				console.log(dunk)
-				
-
-				break;
-			 }
-			 
-			
-			
-			 switch(type)
-				{
-				 case 'double':
-					
-					width = width*2+bleed*2+spine
-					height = height+2*bleed
-				
+					width = 5.5
+					height = 8.5
 					break;
 					
-				 case 'single':
+				case 'custom':
+					if(!numValid(width, 0, 100000)) return('Width is not a valid number');
+					if(!numValid(height, 0, 100000)) return('Width is not a valid number');
+					break;
+				
+				default:
+					return ('invalid type')
+				//check if custom width/height imput is valid
+
+			}
+		
+		var bleedParse = numValid(bleed, 0, 100000);
+		if(bleedParse === NaN) return('bleed is not a valid number')
+		bleed = bleedParse;
+		
+		console.log(width)
+		
+		console.log('spine bef:' + spine)
+			
+		var spineParse = numValid(spine, 0, 100000)
+		if(spineParse === NaN) return('spine is error')
+		spine = spineParse;
+		
+	
+			
+		//check project type
+		
+	
+		switch(type)
+			{
+				case 'double':
+					width = width*2+bleed*2+spine
+					height = height+2*bleed
+					break;
+					
+				case 'single':
 					width = width+2*bleed
 					height = height+2*bleed
+					
+					console.log(width)
 					break
-				}
-				
+					
+				default:
+					return('Please choose a valid type')
 			}
+			console.log('Width: ' + width)
+			console.log('Height: ' + height)
+	}
+			
+function numValid(checkNum, min, max)
+	{	
+		if(Number.parseFloat(checkNum)==false || checkNum < min || checkNum > max)
+			{
+				return(false);
+			}
+				return(Number.parseFloat(checkNum));
+	}
 
 </script>
 		
